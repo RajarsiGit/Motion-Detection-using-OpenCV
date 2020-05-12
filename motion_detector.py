@@ -50,7 +50,10 @@ while True:
 	# if the first frame is None, initialize it
 	if firstFrame is None:
 		firstFrame = gray
-		continue
+
+	# if the `r` key is pressed, reference frame is refreshed
+	if cv2.waitKey(1) & 0xFF == ord("r"):
+		firstFrame = gray
 
 	# compute the absolute difference between the current frame and
 	# first frame
@@ -86,10 +89,9 @@ while True:
 	cv2.imshow("Security Feed", frame)
 	cv2.imshow("Thresh", thresh)
 	cv2.imshow("Frame Delta", frameDelta)
-	key = cv2.waitKey(1) & 0xFF
 
 	# if the `q` key is pressed, break from the lop
-	if key == ord("q"):
+	if cv2.waitKey(1) & 0xFF == ord("q"):
 		break
 
 # cleanup the camera and close any open windows
